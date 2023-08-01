@@ -91,6 +91,10 @@ if __name__ == "__main__":
                 r_image = yolo.detect_image(image, crop = crop, count=count)
                 # r_image.show()
 
+                # Save Image Instead
+                filename = img.split(".")[0]
+                r_image.save(f"{filename}_predicted.jpg")
+
     elif mode == "video":
         capture = cv2.VideoCapture(video_path)
         if video_save_path!="":
