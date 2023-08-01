@@ -9,6 +9,11 @@ import numpy as np
 from PIL import Image
 
 from yolo import YOLO
+from google.colab.patches import cv2_imshow
+import cv2
+
+img = cv2.imread("horse.jpg")
+cv2_imshow(img)
 
 if __name__ == "__main__":
     yolo = YOLO()
@@ -89,7 +94,9 @@ if __name__ == "__main__":
                 continue
             else:
                 r_image = yolo.detect_image(image, crop = crop, count=count)
-                r_image.show()
+                # r_image.show()
+                cv2_imshow(r_image)
+                
 
     elif mode == "video":
         capture = cv2.VideoCapture(video_path)
