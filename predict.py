@@ -9,8 +9,6 @@ import numpy as np
 from PIL import Image
 
 from yolo import YOLO
-from IPython.display import display
-import cv2
 
 if __name__ == "__main__":
     yolo = YOLO()
@@ -91,10 +89,7 @@ if __name__ == "__main__":
                 continue
             else:
                 r_image = yolo.detect_image(image, crop = crop, count=count)
-                # r_image.show()
-                image = Image.fromarray(r_image)
-                display(image)
-                
+                r_image.show()
 
     elif mode == "video":
         capture = cv2.VideoCapture(video_path)
