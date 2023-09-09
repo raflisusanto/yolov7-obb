@@ -58,13 +58,12 @@ def convert_annotation(year, image_id, list_file):
         if cls not in classes or int(difficult) == 1:
             continue
         cls_id = classes.index(cls)
-        xmlbox = obj.find('rotated_bndbox')
-        b = (int(float(xmlbox.find('x1').text)), int(float(xmlbox.find('y1').text)),
-             int(float(xmlbox.find('x2').text)), int(
-                 float(xmlbox.find('y2').text)),
-             int(float(xmlbox.find('x3').text)), int(
-                 float(xmlbox.find('y3').text)),
-             int(float(xmlbox.find('x4').text)), int(float(xmlbox.find('y4').text)))
+        xmlbox = obj.find('bndbox')
+        xmin = round(float(xmlbox.find('xmin').text))
+        ymin = round(float(xmlbox.find('ymin').text))
+        xmax = round(float(xmlbox.find('xmax').text))
+        ymax = round(float(xmlbox.find('ymax').text))
+        b = (xmin, ymin, xmax, ymin, xmax, ymax, xmin, ymax)
         list_file.write(" " + ",".join([str(a)
                         for a in b]) + ',' + str(cls_id))
 
